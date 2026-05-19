@@ -136,6 +136,7 @@ class UI:
             # Save Button
             save_button = ttk.Button(self, text='Save Settings', bootstyle="success", command=self.save_button)
             save_button.pack(pady=20)
+            self.bind("<Return>", lambda event: self.save_button())
 
             # Restart App Label
             restart_app_label = ttk.Label(self, text='Restart the app after any change in settings',
@@ -241,6 +242,7 @@ class UI:
             # Save Button
             save_button = ttk.Button(self, text='Save Settings', bootstyle="success", command=self.save_button)
             save_button.pack(pady=5)
+            self.bind("<Return>", lambda event: self.save_button())
 
             # Restart App Label
             restart_app_label = ttk.Label(self, text='Restart the app after any change in settings',
@@ -356,10 +358,12 @@ class UI:
             # Entry widget
             self.entry = ttk.Entry(frame, width=38)
             self.entry.grid(column=0, row=2, sticky=(ttk.W, ttk.E))
+            self.entry.focus_set()
 
             # Bind the Enter key to the submit function
             self.entry.bind("<Return>", lambda event: self.execute_user_request())
             self.entry.bind("<KP_Enter>", lambda event: self.execute_user_request())
+            self.entry.bind("<Escape>", lambda event: self.entry.delete(0, ttk.END))
 
             # Mic Button
             # mic_button = ttk.Button(frame, image=self.mic_icon, bootstyle="link", command=self.start_voice_input_thread)
